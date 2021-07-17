@@ -1,0 +1,80 @@
+table {
+	font-family: arial, sans-serif;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-top: 1px; 
+	catalog-layout: auto
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	margin: 0; 
+	text-align: left;
+	padding: 8px;
+	max-width: 400px;
+	width:auto;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+.query-form {
+	width: 60%;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 200px;
+}
+
+.form-header{
+	width: 85%;
+	text-align: center;
+	font-size: 120%;
+	font-family: Times; 
+	margin: 0 auto;
+	margin-top: 50;
+	
+	
+}
+
+.form-footer{
+	width: 85%;
+	text-align: center;
+	font-size: 120%;
+	font-family: Times; 
+	margin: 0 auto;
+	margin-top: 30px;
+	
+	
+}
+
+
+.query-table{
+	width: 85%;
+	text-align: center;
+	font-family: Times; 
+	margin: 0 auto;
+}
+
+.form-title{
+	font-size: 200%;
+	font-family: Times; 
+}
+
+.form-title2{
+	font-size: 150%;
+	font-family: Times; 
+}
+
+ul {
+	text-align: left;
+	margin: 0 auto;
+	width: 50%;
+}
+
+.form-control {
+	font-size: 20px; 
+}
+
+
+
