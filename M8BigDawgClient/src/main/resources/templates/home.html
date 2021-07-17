@@ -131,6 +131,13 @@ Licence URI: https://www.os-templates.com/template-terms
 			 <input type="reset" value="Reset" />
 		</div>
 	</form>
+	<p><b>See the catalog!</b></p>
+	<form action="#" th:action="@{/catalog}" th:object="${query}"
+		method="get" class="query-form">
+		<div class="form-group">
+			<input type="submit" value="Submit" />
+		</div>
+	</form> 
 </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->

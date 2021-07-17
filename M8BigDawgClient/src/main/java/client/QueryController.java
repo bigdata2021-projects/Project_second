@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import scala.Tuple2;
 
@@ -57,6 +58,17 @@ public class QueryController {
 			table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 
 		}
+		model.addAttribute("table", table);
+		this.queryResult = table;
+		return view;
+	}
+	
+	@RequestMapping("/catalog")
+	public String queryCatalog(@ModelAttribute Query query, Model model) throws IOException {
+		String view = "catalog";
+		ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> table;
+		query.setContent("bdcatalog(select * from catalog.objects)");
+		table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 		model.addAttribute("table", table);
 		this.queryResult = table;
 		return view;
