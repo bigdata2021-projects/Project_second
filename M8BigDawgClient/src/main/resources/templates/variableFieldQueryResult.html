@@ -8,12 +8,9 @@
 </head>
 
 <body>
-	<h1>Catalog similarities: </h1>
-	
-	<table>
 
-		
-		<tr th:each="row: ${table}">
+	<table>
+<tr th:each="row: ${table}">
 			<td >
 				<form  th:action="@{/searchOnCatalogByRow(id=${row._1})}" method="POST">
 					<input type=submit th:value="${row._1}" >

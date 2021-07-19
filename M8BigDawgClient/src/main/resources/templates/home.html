@@ -18,8 +18,8 @@ Licence URI: https://www.os-templates.com/template-terms
 /* DEMO ONLY */
 .container .demo{text-align:center;}
 .container .demo div{padding:8px 0;}
-.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+.container .demo div:nth-child(odd){color:#000000; background:#000000;}
+.container .demo div:nth-child(even){color:#000000; background:#000000;}
 @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
 /* DEMO ONLY */
 </style>
@@ -28,7 +28,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row0">
+<div class="wrapper row0" >
   <div id="topbar" class="hoc clear">
     <div class="fl_left"> 
       <!-- ################################################################################################ -->
@@ -89,7 +89,7 @@ Licence URI: https://www.os-templates.com/template-terms
   </header>
 </div>
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="wrapper bgded overlay" width="100%" style="background-image:url('../images/demo/backgrounds/02.png');">
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul>
@@ -107,37 +107,44 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="content"> 
       <!-- ################################################################################################ -->
-      <h1>Scegli il tipo di query</h1>
-      <form>
+      <center><h1><b>Benvenuto nel gestore del sistema polystore di M8</b></h1></center>
       
-      </form>
-      <form action="#" th:action="@{/query}" th:object="${query}"
-		method="post" class="query-form">
-		<div class="one_third first">
-	    	<INPUT TYPE="Radio" Name="type" Value="Relational"  th:field="*{type}" Checked >PostreSQL
-	    </div>
-	    <div class="one_third">
-	    	<INPUT TYPE="Radio" Name="type" Value="Array" th:field="*{type}">SciDBArray
-	    </div>
-	    <div class="one_third">
-	    	<INPUT TYPE="Radio" Name="type" Value="Text" th:field="*{type}">AccumuloText
-	    </div>
-		<textarea rows="5" th:name='content' 
-			th:value="${content}"
-			placeholder="Submit Query">
-	    </textarea>
+<div class="row">
+  <div class="one_third" style="background-color:#080808;">
+  <img src="../images/demo/backgrounds/query.png">
+     <center><h2 style="background-color:black;color:white;">Query</h2></center>
+    <p style="background-color:black;color:white;">Clicca qui se vuoi provare a fare una query ai vari database del nostro sistema</p>
+    	<form th:action="@{/queryPanel}" th:object="${query}"
+		method="get" class="query-form">
 		<div class="form-group">
-			<input type="submit" value="Submit" />
-			 <input type="reset" value="Reset" />
+			<center><input type="submit" value="Submit" /></center>
 		</div>
-	</form>
-	<p><b>See the catalog!</b></p>
+	</form> 
+</div>
+
+  <div class="one_third" style="background-color:#080808;">
+  <img src="../images/demo/backgrounds/catalog.png">
+     <center><h2 style="background-color:black;color:white;">Catalog</h2></center>
+    <p style="background-color:black;color:white;">Clicca qui se vuoi visualizzare il catalogo con tutte le tabelle presenti nel nostro sistema</p>
 	<form action="#" th:action="@{/catalog}" th:object="${query}"
 		method="get" class="query-form">
 		<div class="form-group">
 			<input type="submit" value="Submit" />
 		</div>
+	</form>
+</div>
+	
+  <div class="one_third" style="background-color:#080808;">
+  <img src="../images/demo/backgrounds/cast.png">
+     <center><h2 style="background-color:black;color:white;">Cast</h2></center>
+    <p style="background-color:black;color:white;">Clicca qui se vuoi provare a fare un cast ai vari database del nostro sistema</p>
+    	<form action="#" th:action="@{/castPanel}" th:object="${query}"
+		method="get" class="query-form">
+		<div class="form-group">
+			<center><input type="submit" value="Submit" /></center>
+		</div>
 	</form> 
+</div>
 </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->

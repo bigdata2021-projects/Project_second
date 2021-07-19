@@ -15,22 +15,19 @@
 		
 		<p> Executed Query: <th:block th:text="${query.content}"> </th:block> </p>
 	</div>
-
-	<table class="query-table">
+	<table style="width: 100%;">
 
 		<tr>
-			<td></td>
 			<th:block th:each="field: ${table.get(0)._2}">
-				<td th:text="${field._1}"></td>
+				<td th:text="${field._1}" ></td>
 				<th:block />
 		</tr>
 		<tr th:each="row: ${table}">
-
 			<th:block th:each="field: ${row._2}">
-
+				<td th:text=${field._2} style="overflow: hidden; 
+ text-overflow: ellipsis;"></td>
 			<th:block />
 		</tr>
-
 	</table>
 
 	<div class="form-footer">

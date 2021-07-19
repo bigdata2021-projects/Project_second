@@ -22,7 +22,7 @@ public class QueryController {
 
 	private ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> queryResult;
 	private QueryEndpoint queryEndpoint;
-	
+
 	@PostConstruct
 	public void initialize() {
 		this.queryEndpoint = new QueryEndpoint();
@@ -34,11 +34,27 @@ public class QueryController {
 		model.addAttribute("query", query);
 
 		//System.out.println("Query ID: " + query.getId());
-		return "home";
+		return "home3";
 	}
-	
-	
-	
+	@GetMapping("/queryPanel")
+	public String queryPanel(Model model) {
+		Query query = new Query();
+		model.addAttribute("query", query);
+
+		//System.out.println("Query ID: " + query.getId());
+		return "query";
+	}
+	@GetMapping("/castPanel")
+	public String castPanel(Model model) {
+		Query query = new Query();
+		model.addAttribute("query", query);
+
+		//System.out.println("Query ID: " + query.getId());
+		return "cast";
+	}
+
+
+
 
 	@PostMapping("/query")
 	public String querySubmit(@ModelAttribute Query query, Model model) throws IOException {
@@ -47,6 +63,7 @@ public class QueryController {
 		if(query.getType().equals("Text")) {
 			query.setContent("bdtext(" + query.getContent()+ ")");
 			table = this.queryEndpoint.executeQuery(model, query.getContent());
+			System.out.println(query.getContent());
 			view = "variableFieldQueryResult";
 		}else {
 			if(query.getType().equals("Array")) {
@@ -62,25 +79,77 @@ public class QueryController {
 		this.queryResult = table;
 		return view;
 	}
-	
+
 	@RequestMapping("/catalog")
 	public String queryCatalog(@ModelAttribute Query query, Model model) throws IOException {
 		String view = "catalog";
 		ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> table;
-		query.setContent("bdcatalog(select * from catalog.objects)");
+		query.setContent("bdcatalog(select physical_db,logical_db,"
+				+ "name,fields from catalog.objects)");
+		System.out.println(query.getContent());
 		table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 		model.addAttribute("table", table);
 		this.queryResult = table;
 		return view;
 	}
 
+	@PostMapping("/cast")
+	public String castSubmit(@ModelAttribute Query query, Model model) throws IOException {
+		String view = "queryResult";
+		ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> table = null;
+		if(query.getType().equals("AtR")) {
+
+			query.setContent("bdrel(select * from bdcast( bdarray("
+					+ query.getCast1() + "), " + query.getNameTable() +
+					", " + query.getSchema() + ", relational))");
+			System.out.println(query.getContent());
+			table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
+		}
+		else{
+			if(query.getType().contentEquals("RtA")) {
+				query.setContent("bdarray(scan(bdcast(bdrel("
+						+ query.getCast1() + "), " + query.getNameTable() +
+						", " + query.getSchema() + ", array))");
+				table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
+
+
+			}
+			else {
+				if(query.getType().contentEquals("TtR")) {
+					query.setContent("bdrel(select * from bdcast(bdtext("
+							+ query.getCast1() + "), " + query.getNameTable() +
+							", " + query.getSchema() + ", relational))");
+					query.setContent("bdrel(select * from bdcast(bdtext({ 'op' : 'scan', 'table' : 'mimic_logs', 'range' : { 'start' : ['r_0001','',''], 'end' : ['r_0020','','']} }), tab1, '(cq1 text, mimic_text text), relational))");
+					table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
+
+				}
+				else {
+					if(query.getType().contentEquals("RtT")) {
+						query.setContent("bdtext({ 'op' : 'scan', 'table' : 'bdcast(bdrel("
+								+ query.getCast1() + "), " + query.getNameTable() +
+								", " + query.getSchema() + ", text)'})");
+						table = this.queryEndpoint.executeQuery(model, query.getContent());
+
+					}
+				}
+		}
+	}
+
+
+	model.addAttribute("table", table);
+	this.queryResult = table;
+	return view;
+}
 
 
 
 
 
 
-	
-	
+
+
+
+
+
 
 }

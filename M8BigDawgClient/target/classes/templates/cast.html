@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+Template Name: Gleblu
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>M8 BigDawg polystore | Pages | Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left"> 
+      <!-- ################################################################################################ -->
+     <div id="museum" class="one_quarter first">
+				<h1>
+					<img src="../images/demo/logo.png" th:href="@{/}">
+				</h1>
+	 </div> 
+      <ul class="three_quarter">     
+		<li class="one_third">
+			<div class="block clear">
+				<a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Developers:</strong>
+					fra.foresi@stud.uniroma3.it pie.delellis@stud.uniroma3.it</span>
+			</div>
+		</li><li class="one_third"><div class="block clear">
+							<a href="#"><i class="fas fa-gamepad"></i></a> <span><strong>
+									Course:</strong> Big Data 20/21 Roma Tre – second project
+								Polystore Data System </span>
+						</div>
+			</li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+    <div class="fl_right"> 
+      <!-- ################################################################################################ -->
+          <div>
+            <form action="#" method="post">
+              <fieldset>
+                <legend>Quick Search:</legend>
+                <input type="text" placeholder="Enter search term&hellip;">
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </fieldset>
+            </form>
+          </div>
+        </li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <div id="logo" class="fl_left"> 
+      <!-- ################################################################################################ -->
+      <h1><a href="../home.html">M8 polystore BigDawg</a></h1>
+      <!-- ################################################################################################ -->
+    </div>
+    <nav id="mainav" class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li><a href="../home.html">Home</a></li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </nav>
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <div id="breadcrumb" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul>
+      <li><a href="../home.html">Home</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+	   <h1>Scegli il tipo di cast</h1>
+      <form action="#" th:action="@{/cast}" th:object="${query}"
+		method="post" class="query-form">
+		<div class="one_quarter first">
+	    	<INPUT TYPE="Radio" Name="type" Value="AtR"  th:field="*{type}" Checked >Array->Relational
+	    </div>
+	    <div class="one_quarter">
+	    	<INPUT TYPE="Radio" Name="type" Value="RtA" th:field="*{type}">Relational->Array
+	    </div>
+	    <div class="one_quarter">
+	    	<INPUT TYPE="Radio" Name="type" Value="TtR" th:field="*{type}">Text->Relational
+	    </div>
+	    <div class="one_quarter">
+	    	<INPUT TYPE="Radio" Name="type" Value="RtT" th:field="*{type}">Relational->Array
+	    </div>
+	    <div>
+	   <h1>Inserisci la query di ciò che vuoi castare</h1>
+	   <div>es Array->Relational: filter(myarray,dim1>150)</h2>
+	   <div>es Relational->Array: select poe_id, subject_id FROM mimic2v26.poe_order limit 5</div>
+	   <div>es Text->Relational: { 'op' : 'scan', 'table' : 'mimic_logs', 'range' : { 'start' : ['r_0001','',''], 'end' : ['r_0020','','']} }</div>
+	   <div>es Relational->Text: select * from mimic2v26.icd9 limit 4</div>
+		<textarea rows="5" th:name='cast1' 
+			th:value="${cast1}"
+			placeholder="Submit Query">
+	    </textarea>
+	    </div>
+	    <div>
+	   <h1>Inserisci il nome della tabella di arrivo</h1>
+		<textarea rows="5" th:name='nameTable' 
+			th:value="${nameTable}"
+			placeholder="Submit Query">
+	    </textarea>
+	    </div>
+	    <div>
+	   <h1>Inserisci lo schema della tabella di arrivo</div>
+	   <div>es Array->Relational: '(i bigint, dim1 real, dim2 real)'</div>
+	   <div>es Relational->Array: '<subject_id:int32>[poe_id=0:*,10000000,0]'</div>
+	   <div>es Text->Relational: '(cq1 text, mimic_text text)'</div>
+	   <div>es Relational->Text: ''</h2>
+		<textarea rows="5" th:name='schema' 
+			th:value="${schema}"
+			placeholder="Submit Query">
+	    </textarea>
+	    </div>
+		<div class="form-group">
+			<input type="submit" value="Submit" />
+			 <input type="reset" value="Reset" />
+		</div>
+	</form>
+	<p><b>See the catalog!</b></p>
+	<form action="#" th:action="@{/catalog}" th:object="${query}"
+		method="get" class="query-form">
+		<div class="form-group">
+			<input type="submit" value="Submit" />
+		</div>
+	</form> 
+</div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_quarter first">
+    </div>
+    <div class="one_quarter">
+    </div>
+    <div class="one_quarter">
+    </div>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
