@@ -1,19 +1,57 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Getting Started: Handling Form Submission</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-</head>
+<!DOCTYPE html>
+<!--
+	Active by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>M8BigDawgClient | Polystore System</title>
+	
+	<!-- Main CSS file -->
+	<link rel="stylesheet" href="css/style.css" />
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+</head>
 <body>
-	<div class="form-header">
-		
-		<p class="form-title">Query Results:</p>
-		
-		<p> Executed Query: <th:block th:text="${query.content}"> </th:block> </p>
+
+	<!-- PRELOADER -->
+	<div id="st-preloader">
+		<div id="pre-status">
+			<div class="preload-placeholder"></div>
+		</div>
+	</div>
+	<!-- /PRELOADER -->
+
+	<!-- HEADER -->
+	<header class="st-header st-fullHeight">
+		<div class="header-overlay"></div><!-- /HEADER OVERLY -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center st-header-content">
+					<div class="logo"><a href=""><img src="../images/M8_250x250_web.png" alt=""></a></div>
+					<div class="st-header-title">
+						<h2>Benveuti <span> sul sistema Polystore M8</span></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="#service" class="mouse-icon hidden-xs">
+			<div class="wheel"></div>
+		</a>
+	</header>
+	<!-- /HEADER -->
+
+	 <h1>Cast Results</h1>
+		<p> Executed BigDawg Cast Query: <th:block th:text="${query.content}"> </th:block> </p>
 	</div>
 
 	<table class="query-table">
@@ -41,7 +79,7 @@
 	</table>
 
 	<div class="form-footer">
-		<a href="/">Submit another query</a>
+		<a href="/"><b>Back to home</b></a>
 	</div>
 </body>
 </html>

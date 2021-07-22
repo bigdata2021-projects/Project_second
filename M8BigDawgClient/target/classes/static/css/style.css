@@ -103,7 +103,7 @@
 
 	.st-header{
 		position: relative;
-		background-image: url(../images/header-bg.jpg);
+		background-image: url(../images/m8foto.png);
 		background-position: 50% 0;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -244,12 +244,17 @@
 
 
 /* 5. SUBSCRIBE */
+	table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+	table, th{table-layout:auto;}
+	table{width:100%; margin-bottom:15px;}
+	th, td{padding:5px 8px;}
+	td{border-width:0 1px;}
 
 	.subscribe{
 		padding-top: 100px;
 		padding-bottom: 120px;
 		position: relative;
-		background-image: url(../images/subscribe-bg.jpg);
+		background-image: url(../images/m8foto.png);
 		background-position: 50% 0;
 		background-repeat: no-repeat;
 		background-size: cover;

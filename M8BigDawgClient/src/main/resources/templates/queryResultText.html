@@ -8,7 +8,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Active - HTML5 Responsive Template | Template Stock</title>
+	<title>M8BigDawgClient | Polystore System</title>
 	
 	<!-- Main CSS file -->
 	<link rel="stylesheet" href="css/style.css" />
@@ -40,7 +40,6 @@
 					<div class="logo"><a href=""><img src="../images/M8_250x250_web.png" alt=""></a></div>
 					<div class="st-header-title">
 						<h2>Benveuti <span> sul sistema Polystore M8</span></h2>
-						<p>Visita il nostro sito per scoprire di più sul nostro sistema</p>
 					</div>
 				</div>
 			</div>
@@ -50,50 +49,31 @@
 		</a>
 	</header>
 	<!-- /HEADER -->
+<div class="form-header">
+		
+		<h1>Query Results</h1>
+		
+		<p><b>Executed BigDawg Query:</b> <th:block th:text="${query.content}"> </th:block> </p>
+</div>
 
-	<!-- SERVICE ICONS -->
-	<section id="service" class="service-icons">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 st-service-box">
-					<span><i class="fa fa-search" aria-hidden="true"></i></span>
-					<h3 class="text-uppercase">Query</h3>
-					<p>Clicca qui se vuoi provare a fare una query ai vari database del nostro sistema</p>
-						<form action="#" th:action="@{/queryPanel}" th:object="${query}"
-		method="get" class="query-form">
-		<div class="form-group">
-			<input type="submit" value="Submit" />
-		</div>
-	</form>
-				</div>
+	<table class="tableM8">
 
-				<div class="col-sm-4 st-service-box">
-					<span><i class="fa fa-database" aria-hidden="true"></i></span>
-					<h3 class="text-uppercase">Catalog</h3>
-					<p>Clicca qui se vuoi visualizzare il catalogo con tutte le tabelle presenti nel nostro sistema.</p>
-						<form action="#" th:action="@{/catalog}" th:object="${query}"
-		method="get" class="query-form">
-		<div class="form-group">
-			<input type="submit" value="Submit" />
-		</div>
-	</form>
-				</div>
+		<tr>
+			<th:block th:each="field: ${table.get(0)._2}">
+				<td th:text="${field._1}" ></td>
+				<th:block />
+		</tr>
+		<tr th:each="row: ${table}">
+			<th:block th:each="field: ${row._2}">
+				<td th:text=${field._2} style="overflow: hidden; 
+ text-overflow: ellipsis;"></td>
+			<th:block />
+		</tr>
+	</table>
 
-				<div class="col-sm-4 st-service-box">
-					<span><i class="fa fa-refresh" aria-hidden="true"></i></span>
-					<h3 class="text-uppercase">Cast Query</h3>
-					<p>Clicca qui se vuoi provare a fare un cast ai vari database del nostro sistema</p>
-						<form action="#" th:action="@{/castPanel}" th:object="${query}"
-		method="get" class="query-form">
-		<div class="form-group">
-			<input type="submit" value="Submit" />
-		</div>
-	</form>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- /SERVICE ICONS -->
+	<div class="form-footer">
+		<a href="/"><b>Back to home</b></a>
+	</div>
 
 	<!-- SUBSCRIBE -->
 	<section class="subscribe">

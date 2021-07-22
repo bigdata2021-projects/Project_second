@@ -34,7 +34,7 @@ public class QueryController {
 		model.addAttribute("query", query);
 
 		//System.out.println("Query ID: " + query.getId());
-		return "home3";
+		return "home";
 	}
 	@GetMapping("/queryPanel")
 	public String queryPanel(Model model) {
@@ -61,10 +61,10 @@ public class QueryController {
 		String view = "queryResult";
 		ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> table;
 		if(query.getType().equals("Text")) {
-			query.setContent("bdtext(" + query.getContent()+ ")");
+			query.setContent("bdtext(" + query.getContent()+ ");");
 			table = this.queryEndpoint.executeQuery(model, query.getContent());
 			System.out.println(query.getContent());
-			view = "variableFieldQueryResult";
+			view = "queryResultText";
 		}else {
 			if(query.getType().equals("Array")) {
 				query.setContent("bdarray(" + query.getContent() + ")");
@@ -84,8 +84,10 @@ public class QueryController {
 	public String queryCatalog(@ModelAttribute Query query, Model model) throws IOException {
 		String view = "catalog";
 		ArrayList<Tuple2<Long, ArrayList<Tuple2<String,String>>>> table;
-		query.setContent("bdcatalog(select physical_db,logical_db,"
-				+ "name,fields from catalog.objects)");
+		query.setContent("bdcatalog(select e.connection_properties as type, o.logical_db,"
+				+ "o.name, o.fields from catalog.objects as o, "
+				+ "catalog.engines as e, catalog.databases as d where "
+				+ "o.physical_db=d.dbid and d.engine_id=e.eid limit 48)");
 		System.out.println(query.getContent());
 		table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 		model.addAttribute("table", table);
@@ -109,7 +111,7 @@ public class QueryController {
 			if(query.getType().contentEquals("RtA")) {
 				query.setContent("bdarray(scan(bdcast(bdrel("
 						+ query.getCast1() + "), " + query.getNameTable() +
-						", " + query.getSchema() + ", array))");
+						", " + query.getSchema() + ", array)))");
 				table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 
 
@@ -119,7 +121,6 @@ public class QueryController {
 					query.setContent("bdrel(select * from bdcast(bdtext("
 							+ query.getCast1() + "), " + query.getNameTable() +
 							", " + query.getSchema() + ", relational))");
-					query.setContent("bdrel(select * from bdcast(bdtext({ 'op' : 'scan', 'table' : 'mimic_logs', 'range' : { 'start' : ['r_0001','',''], 'end' : ['r_0020','','']} }), tab1, '(cq1 text, mimic_text text), relational))");
 					table = this.queryEndpoint.executeJsonQuery(model, query.getContent());
 
 				}
@@ -127,9 +128,9 @@ public class QueryController {
 					if(query.getType().contentEquals("RtT")) {
 						query.setContent("bdtext({ 'op' : 'scan', 'table' : 'bdcast(bdrel("
 								+ query.getCast1() + "), " + query.getNameTable() +
-								", " + query.getSchema() + ", text)'})");
+								", " + query.getSchema() + ", text)'});");
 						table = this.queryEndpoint.executeQuery(model, query.getContent());
-
+						view = "queryResultText";
 					}
 				}
 		}
