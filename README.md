@@ -35,7 +35,7 @@ Per utilizzarlo bisogna scaricare aver installato tutti i requisiti nella sezion
 Una volta che tutti i contentiori docker sono in esecuzione possiamo utilizzare il client in due modi:
 
 1. Importare il client attraverso un IDE (es. Eclipse), navigare a "Project_second\M8BigDawgClient\src\main\java\client\application.java" ed runnare come java application.
-2. Scaricare il file "filename.jar" presente nella cartella Project_second, aprire il terminale ed eseguire il comando "java -jar filename.jar.
+2. Scaricare il file "m8Client.jar" presente nella cartella Project_second, aprire il terminale ed eseguire il comando "java -jar m8Client.jar".
 
 
 
