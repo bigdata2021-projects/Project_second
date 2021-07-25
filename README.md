@@ -32,7 +32,7 @@ Per utilizzarlo bisogna scaricare aver installato tutti i requisiti nella sezion
 2. Runnare il seguente docker script  "./setup_bigdawg_docker.sh"
 3. Controllare che tutti i contenitore docker siano avviati tramite il comando "docker ps"
 
-Una volta che tutti i contentiori docker sono in esecuzione possiamo utilizzare il client in due modi:
+Una volta che tutti i contentiori docker sono in esecuzione possiamo avviare il client in due modi differenti:
 
 1. Importare il client attraverso un IDE (es. Eclipse), navigare a "Project_second\M8BigDawgClient\src\main\java\client\application.java" ed runnare come java application.
 2. Scaricare il file "m8Client.jar" presente nella cartella Project_second, aprire il terminale ed eseguire il comando "java -jar m8Client.jar".
